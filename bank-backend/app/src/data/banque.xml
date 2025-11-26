@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<banque xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="banque.xsd">
+
+  <utilisateurs>
+
+    <manager>
+      <nom>Lamhamdi</nom>
+      <prenom>Aymane</prenom>
+      <role>manager</role>
+      <email>lamhamdi.aymane@mhabank.com</email>
+      <telephone>0612345678</telephone>
+    </manager>
+
+   
+
+  </utilisateurs>
+
+  <comptes>
+
+    <compte id ="C004">
+     
+      <nom>Lamhamdi</nom>
+      <prenom>Aymane</prenom>
+      <email>aymane@gmail.com</email>
+      <numero>0700000007</numero>
+      <type>courant</type>
+      <solde>12500.75</solde>
+      <devise>dh</devise>
+      <dateCreation>2024-09-01</dateCreation>
+      <statut>active</statut>
+    </compte>
+
+  </comptes>
+
+</banque>

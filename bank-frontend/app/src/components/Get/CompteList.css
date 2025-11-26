@@ -1,0 +1,109 @@
+/* Container global */
+.compte-container {
+  width: 90%;
+  max-width: 900px;
+  margin: 40px auto;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Titre */
+.compte-container h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #333;
+  text-align: center;
+}
+
+/* Bouton ajouter */
+.add-btn {
+  display: inline-block;
+  background: #1e90ff;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+  margin-bottom: 25px;
+}
+
+.add-btn:hover {
+  background: #0c74d4;
+}
+
+/* Carte d’un compte */
+.compte-card {
+  background: white;
+  padding: 20px 25px;
+  margin-bottom: 20px;
+  border-radius: 14px;
+  border-left: 6px solid #1e90ff;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
+  transition: 0.25s;
+}
+
+.compte-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Nom */
+.compte-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #222;
+}
+
+/* Ligne d'informations */
+.info-line {
+  margin: 5px 0;
+  color: #555;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Boutons */
+.btn-delete {
+  background: #ff4444;
+  color: #fff;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-right: 10px;
+  transition: 0.3s;
+}
+
+.btn-delete:hover {
+  background: #d63030;
+}
+
+.btn-edit {
+  background: #00bcd4;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-edit:hover {
+  background: #0099ac;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .compte-card {
+    padding: 15px;
+  }
+
+  .compte-name {
+    font-size: 18px;
+  }
+}

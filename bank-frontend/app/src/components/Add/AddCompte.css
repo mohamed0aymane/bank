@@ -1,0 +1,90 @@
+/* Conteneur du formulaire */
+.addcompte-form {
+  width: 90%;
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Titre */
+.addcompte-title {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 25px;
+}
+
+/* Inputs */
+.addcompte-form input,
+.addcompte-form select {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.addcompte-form input:focus,
+.addcompte-form select:focus {
+  border-color: #0078ff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0,120,255,0.4);
+}
+
+/* Labels */
+.addcompte-form label {
+  font-weight: 600;
+  color: #444;
+  display: block;
+  margin-top: 5px;
+}
+
+/* Boutons */
+.addcompte-btn {
+  width: 100%;
+  background: #0078ff;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  margin-top: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.addcompte-btn:hover {
+  background: #005fcc;
+}
+
+/* Bouton retour */
+.addcompte-back {
+  width: 100%;
+  background: #555;
+  color: white;
+  padding: 12px;
+  font-size: 15px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.addcompte-back:hover {
+  background: #333;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .addcompte-form {
+    padding: 20px;
+  }
+}

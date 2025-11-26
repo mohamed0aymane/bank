@@ -1,0 +1,112 @@
+/* Background global */
+.home-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #1e90ff, #00bcd4);
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Carte centrale */
+.home-card {
+  background: white;
+  padding: 40px 50px;
+  border-radius: 18px;
+  width: 420px;
+  text-align: center;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.7s ease-in-out;
+}
+
+/* Animation douce */
+@keyframes fadeIn {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Logo */
+.home-image {
+  width: 110px;
+  margin-bottom: 20px;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Animation logo flottant */
+@keyframes float {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Titre */
+.home-card h1 {
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* Texte de description */
+.home-text {
+  color: #666;
+  font-size: 15px;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+/* Container des boutons */
+.home-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Style général bouton */
+.btn {
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 600;
+}
+
+/* Bouton Sign In */
+.btn.login {
+  background-color: #1e90ff;
+  color: white;
+}
+
+.btn.login:hover {
+  background-color: #0c74d4;
+}
+
+/* Bouton Sign Up */
+.btn.signup {
+  background-color: #00bcd4;
+  color: white;
+}
+
+.btn.signup:hover {
+  background-color: #0099ac;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .home-card {
+    width: 90%;
+    padding: 30px;
+  }
+
+  .home-image {
+    width: 90px;
+  }
+}

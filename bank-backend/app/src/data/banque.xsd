@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+  <!-- ====================== TYPES SIMPLES ====================== -->
+
+  <!-- Email client (compte) -->
+  <xs:simpleType name="EmailClientType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[a-zA-Z0-9]+@gmail\.com"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Email manager -->
+  <xs:simpleType name="EmailManagerType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[a-z]+\.[a-z]+@mhabank\.com"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Téléphone : 10 chiffres -->
+  <xs:simpleType name="TelephoneType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{10}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Rôle -->
+  <xs:simpleType name="RoleType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="manager"/>
+      <xs:enumeration value="client"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Statut -->
+  <xs:simpleType name="StatutType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="active"/>
+      <xs:enumeration value="desactive"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Devise obligatoire en dh -->
+  <xs:simpleType name="DeviseType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="dh"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- ====================== UTILISATEURS ====================== -->
+
+  <xs:complexType name="UtilisateurManagerType">
+    <xs:sequence>
+      <xs:element name="nom" type="xs:string"/>
+      <xs:element name="prenom" type="xs:string"/>
+      <xs:element name="role" fixed="manager"/>
+      <xs:element name="email" type="EmailManagerType"/>
+      <xs:element name="telephone" type="TelephoneType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="UtilisateurClientType">
+    <xs:sequence>
+      <xs:element name="nom" type="xs:string"/>
+      <xs:element name="prenom" type="xs:string"/>
+      <xs:element name="role" fixed="client"/>
+      <xs:element name="email" type="EmailClientType"/>
+      <xs:element name="telephone" type="TelephoneType"/>
+    </xs:sequence>
+    
+  </xs:complexType>
+
+  <xs:element name="utilisateurs">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element name="manager" type="UtilisateurManagerType"/>
+        <xs:element name="client" type="UtilisateurClientType"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ====================== COMPTE ====================== -->
+
+  <xs:complexType name="CompteType">
+    <xs:sequence>
+
+    
+      <xs:element name="nom" type="xs:string"/>
+      <xs:element name="prenom" type="xs:string"/>
+      <xs:element name="email" type="EmailClientType"/>
+
+      <xs:element name="numero" type="TelephoneType"/>
+      <xs:element name="type" type="xs:string"/>
+
+      <xs:element name="solde">
+        <xs:simpleType>
+          <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0.00"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="devise" type="DeviseType"/>
+      <xs:element name="dateCreation" type="xs:date"/>
+      <xs:element name="statut" type="StatutType"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID" use="required"/>
+    
+  </xs:complexType>
+
+  <xs:element name="comptes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="compte" type="CompteType" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+
+
+  <xs:element name="banque">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="utilisateurs"/>
+        <xs:element ref="comptes"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
