@@ -1,29 +1,26 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// Home (page d'accueil)
 import Home from "./components/Home/Home";
 
-// Login / Register
+
 import Login from "./components/SignIn/Login";
 import Register from "./components/SignUp/Register";
 
-// Dashboard
+
 import Dashboard from "./components/Dashboard/Dashboard";
 
-// Protected Route
 import ProtectedRoute from "./components/Route/ProtectedRoute";
 
-// CRUD Comptes
+
 import CompteList from "./components/Get/CompteList";
 import AddCompte from "./components/Add/AddCompte";
 import EditCompte from "./components/Update/EditCompte";
 import UploadXml from "./components/UploadXml/UploadXml";
-import Footer from "./components/Footer/Footer";
 import CompteDetail from "./components/CompteDetail/CompteDetail";
 
 
-
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -40,53 +37,57 @@ function App() {
         <Route
           path="/dashboard"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute roles={["manager", "agent"]}>
               <Dashboard />
             </ProtectedRoute>
           }
         />
 
+        {/* Détail compte */}
         <Route
-              path="/comptes/:id"
-              element={
-                <ProtectedRoute>
-                  <CompteDetail />
-                </ProtectedRoute>
-              }
-            />
+          path="/comptes/:id"
+          element={
+            <ProtectedRoute roles={["manager", "agent"]}>
+              <CompteDetail />
+            </ProtectedRoute>
+          }
+        />
 
-        {/* CRUD Comptes */}
+        {/* Liste des comptes */}
         <Route
           path="/comptes"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute roles={["manager", "agent"]}>
               <CompteList />
             </ProtectedRoute>
           }
         />
 
+        {/* Ajouter un compte (manager seulement) */}
         <Route
           path="/comptes/add"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute roles={["manager"]}>
               <AddCompte />
             </ProtectedRoute>
           }
         />
 
+        {/* Modifier un compte (manager seulement) */}
         <Route
           path="/comptes/edit/:id"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute roles={["manager"]}>
               <EditCompte />
             </ProtectedRoute>
           }
         />
 
+        {/* Import XML (manager seulement) */}
         <Route
           path="/comptes/import"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute roles={["manager"]}>
               <UploadXml />
             </ProtectedRoute>
           }

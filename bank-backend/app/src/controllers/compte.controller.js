@@ -14,7 +14,7 @@ export const list = async (req, res) => {
       const comptes = await Compte.find();
       return res.json(comptes);
     } else if (req.user.role === "agent") {
-      const comptes = await Compte.find({ email: req.user.email });
+      const comptes = await Compte.find();
       return res.json(comptes);
     } else {
       return res.status(403).json({ message: "Forbidden" });
@@ -65,8 +65,22 @@ export const get = async (req, res) => {
     const c = await Compte.findOne({ id: req.params.id });
     if (!c) return res.status(404).json({ message: "Not found" });
 
-    if (req.user.role === "agent" && c.email !== req.user.email)
-      return res.status(403).json({ message: "Forbidden" });
+  if (req.user.role === "agent") {
+  // retourner seulement certains champs
+  return res.json({
+    id: c.id,
+    nom: c.nom,
+    prenom: c.prenom,
+    email: c.email,
+    numero: c.numero,
+    type: c.type,
+    solde: c.solde,
+    devise: c.devise,
+    dateCreation: c.dateCreation,
+    statut: c.statut,
+  });
+}
+
 
     res.json(c);
   } catch (err) {

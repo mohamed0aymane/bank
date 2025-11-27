@@ -9,23 +9,29 @@ export default function CompteDetail() {
   const [compte, setCompte] = useState(null);
 
   useEffect(() => {
-    const fetchCompte = async () => {
-      try {
-        const res = await fetch(`http://192.168.100.10:4000/api/comptes/${id}`, {
-          method: "GET",
-          headers: { Authorization: "Bearer " + token },
-        });
+  const fetchCompte = async () => {
+    try {
+      const res = await fetch(`http://192.168.100.10:4000/api/comptes/${id}`, {
+        method: "GET",
+        headers: { Authorization: "Bearer " + token },
+      });
 
-        if (!res.ok) throw new Error("Erreur chargement compte");
-        const data = await res.json();
-        setCompte(data);
-      } catch (err) {
-        console.error(err);
-        alert("Erreur : " + err.message);
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.message || "Erreur chargement compte");
       }
-    };
-    fetchCompte();
-  }, [id, token]);
+
+      const data = await res.json();
+      setCompte(data);
+    } catch (err) {
+      console.error(err);
+      alert("Erreur : " + err.message);
+      navigate(-1); // retourne à la page précédente
+    }
+  };
+  fetchCompte();
+}, [id, token]);
+
 
   if (!compte) return <p>Chargement...</p>;
 
