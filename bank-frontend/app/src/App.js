@@ -19,12 +19,16 @@ import CompteList from "./components/Get/CompteList";
 import AddCompte from "./components/Add/AddCompte";
 import EditCompte from "./components/Update/EditCompte";
 import UploadXml from "./components/UploadXml/UploadXml";
+import Footer from "./components/Footer/Footer";
+import CompteDetail from "./components/CompteDetail/CompteDetail";
+
+
+
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-
         {/* Page d'accueil */}
         <Route path="/" element={<Home />} />
 
@@ -41,6 +45,15 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route
+              path="/comptes/:id"
+              element={
+                <ProtectedRoute>
+                  <CompteDetail />
+                </ProtectedRoute>
+              }
+            />
 
         {/* CRUD Comptes */}
         <Route
@@ -78,8 +91,8 @@ function App() {
             </ProtectedRoute>
           }
         />
-
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

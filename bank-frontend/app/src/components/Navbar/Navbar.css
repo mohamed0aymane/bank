@@ -1,0 +1,119 @@
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: #1d3557;
+  color: #fff;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  font-family: 'Arial', sans-serif;
+}
+
+.navbar-left h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar-left span {
+  margin-left: 20px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #a8dadc;
+}
+
+.navbar-center {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  justify-content: center;
+}
+
+.navbar-search-input {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  width: 180px;
+  font-size: 0.95rem;
+}
+
+.navbar-search-select {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+}
+
+.navbar-search-btn {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 8px;
+  background: #f4a261;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.navbar-search-btn:hover {
+  background: #e76f51;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.navbar-right .navbar-logout {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 8px;
+  background: #e63946;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.navbar-right .navbar-logout:hover {
+  background: #d62828;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Résultats de recherche */
+.navbar-search-results {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  max-height: 300px;
+  overflow-y: auto;
+  background: #fff;
+  color: #000;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  z-index: 100;
+  padding: 10px;
+}
+
+.navbar-search-card {
+  padding: 8px 10px;
+  border-bottom: 1px solid #ddd;
+  font-size: 0.95rem;
+}
+
+.navbar-search-card:last-child {
+  border-bottom: none;
+}
+
+.navbar-search-card b {
+  color: #1d3557;
+}
+
+.navbar-search-card span {
+  font-weight: 500;
+  color: #f4a261;
+}

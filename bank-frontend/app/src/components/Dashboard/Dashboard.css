@@ -1,65 +1,64 @@
-/* Conteneur global */
+/* Container général */
 .dashboard-container {
-  width: 90%;
-  max-width: 1100px;
-  margin: 40px auto;
-  font-family: "Segoe UI", Arial, sans-serif;
-}
-
-/* Titre */
-.dashboard-title {
-  font-size: 32px;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 20px;
-  color: #222;
-}
-
-/* Header Top (logout + options) */
-.dashboard-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 35px;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #f1faee;
 }
 
-/* Bouton logout */
-.logout-btn {
-  background: #ff4b4b;
-  color: white;
+/* Navbar en haut */
+.dashboard-body {
+  display: flex;
+  flex: 1;
+}
+
+/* Sidebar gauche */
+.dashboard-sidebar {
+  width: 250px;
+  background-color: #457b9d;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.dashboard-sidebar button {
+  padding: 12px;
   border: none;
-  padding: 10px 18px;
-  font-size: 15px;
-  border-radius: 10px;
-  font-weight: 600;
+  border-radius: 12px;
   cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #f4a261;
   transition: 0.3s;
 }
 
-.logout-btn:hover {
-  background: #d63030;
+.dashboard-sidebar button:hover {
+  background-color: #e76f51;
 }
 
-/* Section wrapper */
-.section-box {
-  background: white;
-  padding: 20px 25px;
-  margin: 20px 0;
-  border-radius: 14px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-}
-
-.section-title {
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 15px;
-  color: #333;
+/* Main content à droite */
+.dashboard-main {
+  flex: 1;
+  padding: 25px;
+  background-color: #f1faee;
+  overflow-x: auto;
 }
 
 /* Responsive */
-@media (max-width: 700px) {
-  .dashboard-header {
+@media (max-width: 768px) {
+  .dashboard-body {
     flex-direction: column;
-    gap: 15px;
+  }
+  .dashboard-sidebar {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  .dashboard-main {
+    padding: 15px;
   }
 }

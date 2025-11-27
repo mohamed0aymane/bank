@@ -1,62 +1,81 @@
-/* Conteneur principal */
+/* Container principal */
 .login-container {
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f5f6fa;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1d3557, #457b9d);
   font-family: Arial, sans-serif;
 }
 
-/* Carte du formulaire */
+/* Box login */
 .login-box {
-  background: white;
-  padding: 35px 45px;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-  width: 350px;
-  text-align: center;
-}
-
-/* Titre */
-.login-box h1 {
-  margin-bottom: 25px;
-  color: #333;
-  font-size: 26px;
-  font-weight: bold;
-}
-
-/* Input style */
-.login-box input {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
   width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  font-size: 15px;
-  border: 1px solid #ccc;
+  max-width: 400px;
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+
+.login-box h1 {
+  color: #1d3557;
+  margin-bottom: 25px;
+  font-size: 2rem;
+}
+
+/* Formulaire */
+.login-form input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
   border-radius: 8px;
-  transition: 0.2s;
+  border: 1.5px solid #ddd;
+  font-size: 1rem;
+  transition: 0.3s;
 }
 
-.login-box input:focus {
-  border-color: #3498db;
+.login-form input:focus {
+  border-color: #457b9d;
   outline: none;
-  box-shadow: 0 0 5px rgba(52,152,219,0.4);
 }
 
-/* Bouton */
-.login-box button {
+/* Boutons */
+.login-btn,
+.signup-btn {
   width: 100%;
   padding: 12px;
   margin-top: 10px;
-  background: #3498db;
   border: none;
   border-radius: 8px;
-  color: white;
-  font-size: 16px;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.3s;
 }
 
-.login-box button:hover {
-  background: #2980b9;
+.login-btn {
+  background-color: #1d3557;
+  color: #fff;
+}
+
+.login-btn:hover {
+  background-color: #457b9d;
+}
+
+.signup-btn {
+  background-color: #f4a261;
+  color: #fff;
+}
+
+.signup-btn:hover {
+  background-color: #e76f51;
+}
+
+/* Anim */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }

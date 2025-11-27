@@ -1,112 +1,70 @@
-/* Background global */
 .home-container {
-  height: 100vh;
+  display: flex;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #4f93ce, #28527a);
+  font-family: 'Arial', sans-serif;
+  color: #fff;
+}
+
+.home-left {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #1e90ff, #00bcd4);
-  font-family: "Segoe UI", Arial, sans-serif;
+  background: #1d3557;
 }
 
-/* Carte centrale */
-.home-card {
-  background: white;
-  padding: 40px 50px;
-  border-radius: 18px;
-  width: 420px;
-  text-align: center;
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
-  animation: fadeIn 0.7s ease-in-out;
-}
-
-/* Animation douce */
-@keyframes fadeIn {
-  from {
-    transform: translateY(10px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Logo */
 .home-image {
-  width: 110px;
-  margin-bottom: 20px;
-  animation: float 3s ease-in-out infinite;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
-/* Animation logo flottant */
-@keyframes float {
-  0%   { transform: translateY(0px); }
-  50%  { transform: translateY(-8px); }
-  100% { transform: translateY(0px); }
-}
-
-/* Titre */
-.home-card h1 {
-  color: #333;
-  margin-bottom: 10px;
-  font-size: 28px;
-  font-weight: 700;
-}
-
-/* Texte de description */
-.home-text {
-  color: #666;
-  font-size: 15px;
-  margin-bottom: 30px;
-  line-height: 1.6;
-}
-
-/* Container des boutons */
-.home-buttons {
+.home-right {
+  flex: 1;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  gap: 20px;
+  align-items: center;
+  padding: 50px;
+  background: #457b9d;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
 }
 
-/* Style général bouton */
-.btn {
-  padding: 12px 25px;
-  font-size: 16px;
+.home-title {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.home-text {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.home-buttons .btn {
+  margin: 10px;
+  padding: 15px 40px;
+  font-size: 1rem;
   border: none;
-  border-radius: 10px;
+  border-radius: 30px;
   cursor: pointer;
-  transition: 0.3s;
-  font-weight: 600;
+  transition: 0.3s ease;
 }
 
-/* Bouton Sign In */
-.btn.login {
-  background-color: #1e90ff;
-  color: white;
+.home-buttons .login {
+  background: #f4a261;
+  color: #1d3557;
 }
 
-.btn.login:hover {
-  background-color: #0c74d4;
+.home-buttons .signup {
+  background: #e63946;
+  color: #fff;
 }
 
-/* Bouton Sign Up */
-.btn.signup {
-  background-color: #00bcd4;
-  color: white;
-}
-
-.btn.signup:hover {
-  background-color: #0099ac;
-}
-
-/* Responsive */
-@media (max-width: 480px) {
-  .home-card {
-    width: 90%;
-    padding: 30px;
-  }
-
-  .home-image {
-    width: 90px;
-  }
+.home-buttons .btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }

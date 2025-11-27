@@ -1,0 +1,77 @@
+.compte-detail-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #f1faee; /* fond clair comme dashboard */
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+.compte-detail-container h2 {
+  text-align: center;
+  color: #1d3557; /* bleu foncé pour titres */
+  margin-bottom: 25px;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.compte-detail-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.compte-detail-container ul li {
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  border-left: 5px solid #f4a261; /* accent ocre comme boutons */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: all 0.2s ease-in-out;
+}
+
+.compte-detail-container ul li:hover {
+  transform: translateX(3px);
+  background-color: #eaf4f4; /* léger survol bleu clair */
+}
+
+.compte-detail-container button {
+  display: block;
+  margin: 25px auto 0;
+  padding: 12px 30px;
+  font-size: 1rem;
+  background-color: #f4a261; /* bouton accent */
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+}
+
+.compte-detail-container button:hover {
+  background-color: #e76f51; /* hover ocre foncé */
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .compte-detail-container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .compte-detail-container h2 {
+    font-size: 1.6rem;
+  }
+
+  .compte-detail-container ul li {
+    padding: 10px 12px;
+  }
+
+  .compte-detail-container button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}

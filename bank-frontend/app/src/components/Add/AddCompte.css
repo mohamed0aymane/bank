@@ -1,90 +1,74 @@
-/* Conteneur du formulaire */
 .addcompte-form {
-  width: 90%;
   max-width: 500px;
   margin: 40px auto;
   padding: 30px;
-  background: white;
-  border-radius: 14px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-  font-family: "Segoe UI", Arial, sans-serif;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
 }
 
-/* Titre */
 .addcompte-title {
   text-align: center;
-  font-size: 26px;
-  font-weight: 700;
-  color: #222;
+  font-size: 1.8rem;
+  color: #1d3557;
   margin-bottom: 25px;
+  font-weight: 700;
 }
 
-/* Inputs */
 .addcompte-form input,
 .addcompte-form select {
+  display: block;
   width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-size: 15px;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
   transition: 0.3s;
 }
 
 .addcompte-form input:focus,
 .addcompte-form select:focus {
-  border-color: #0078ff;
+  border-color: #457b9d;
   outline: none;
-  box-shadow: 0 0 5px rgba(0,120,255,0.4);
 }
 
-/* Labels */
-.addcompte-form label {
-  font-weight: 600;
-  color: #444;
-  display: block;
-  margin-top: 5px;
-}
-
-/* Boutons */
-.addcompte-btn {
-  width: 100%;
-  background: #0078ff;
-  color: white;
+.addcompte-btn,
+.addcompte-back {
+  display: inline-block;
+  width: 48%;
   padding: 12px;
-  font-size: 16px;
+  margin-top: 10px;
   border: none;
-  margin-top: 20px;
-  border-radius: 10px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
   transition: 0.3s;
+}
+
+.addcompte-btn {
+  background-color: #1d3557;
+  color: #fff;
 }
 
 .addcompte-btn:hover {
-  background: #005fcc;
+  background-color: #457b9d;
 }
 
-/* Bouton retour */
 .addcompte-back {
-  width: 100%;
-  background: #555;
-  color: white;
-  padding: 12px;
-  font-size: 15px;
-  border: none;
-  border-radius: 10px;
-  margin-top: 12px;
-  cursor: pointer;
-  transition: 0.3s;
+  background-color: #e63946;
+  color: #fff;
 }
 
 .addcompte-back:hover {
-  background: #333;
+  background-color: #d62828;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .addcompte-form {
-    padding: 20px;
-  }
+label {
+  font-weight: bold;
+  color: #1d3557;
+  margin-bottom: 5px;
+  display: block;
 }

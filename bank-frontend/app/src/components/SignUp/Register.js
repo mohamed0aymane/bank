@@ -1,17 +1,69 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Register.css";
 
 export default function Register() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     nom: "",
     prenom: "",
     email: "",
     password: "",
-    role: "client",
+    role: "",
+    telephone: "",
   });
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const validateForm = () => {
+    const nameRegex = /^[A-Za-z]+$/;
+    const phoneRegex = /^(06|07)\d{8}$/;
+    const emailRegex = new RegExp(
+      `^${form.nom.toLowerCase()}\\.${form.prenom.toLowerCase()}@bankmha\\.com$`
+    );
+
+    if (!nameRegex.test(form.nom)) {
+      alert("Le nom doit contenir uniquement des lettres.");
+      return false;
+    }
+
+    if (!nameRegex.test(form.prenom)) {
+      alert("Le prénom doit contenir uniquement des lettres.");
+      return false;
+    }
+
+    if (!phoneRegex.test(form.telephone)) {
+      alert(
+        "Le numéro de téléphone doit commencer par 06 ou 07 et contenir 10 chiffres."
+      );
+      return false;
+    }
+
+    if (!emailRegex.test(form.email)) {
+      alert(
+        `L'email doit avoir la structure : nom.prenom@bankmha.com`
+      );
+      return false;
+    }
+
+    if (!form.password) {
+      alert("Le mot de passe est requis.");
+      return false;
+    }
+
+    if (!["manager", "agent"].includes(form.role)) {
+      alert("Rôle invalide.");
+      return false;
+    }
+
+    return true;
+  };
 
   const register = async (e) => {
     e.preventDefault();
+    if (!validateForm()) return;
 
     try {
       const res = await fetch("http://192.168.100.10:4000/api/auth/signup", {
@@ -19,59 +71,74 @@ export default function Register() {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include", 
+        credentials: "include",
         body: JSON.stringify(form),
       });
 
       if (!res.ok) {
         const errorData = await res.json();
-        throw new Error(errorData.message || "Registration error");
+        throw new Error(errorData.message || "Erreur lors de l'inscription");
       }
 
-      alert("User created !");
-      window.location.href = "/signin";
+      alert("Inscription réussie !");
+      navigate("/signin");
     } catch (err) {
+      console.error(err);
       alert("Erreur : " + err.message);
     }
   };
 
   return (
     <div className="register-container">
-      <h1>Sign Up</h1>
-
-      <form onSubmit={register}>
+      <h1>Inscription</h1>
+      <form onSubmit={register} className="register-form">
         <input
+          type="text"
+          name="nom"
           placeholder="Nom"
           value={form.nom}
-          onChange={(e) => setForm({ ...form, nom: e.target.value })}
+          onChange={handleChange}
         />
         <input
-          placeholder="Prenom"
+          type="text"
+          name="prenom"
+          placeholder="Prénom"
           value={form.prenom}
-          onChange={(e) => setForm({ ...form, prenom: e.target.value })}
+          onChange={handleChange}
         />
         <input
-          placeholder="Email"
+          type="email"
+          name="email"
+          placeholder="Email (nom.prenom@bankmha.com)"
           value={form.email}
-          onChange={(e) => setForm({ ...form, email: e.target.value })}
+          onChange={handleChange}
         />
         <input
           type="password"
-          placeholder="Password"
+          name="password"
+          placeholder="Mot de passe"
           value={form.password}
-          onChange={(e) => setForm({ ...form, password: e.target.value })}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="telephone"
+          placeholder="Téléphone (ex: 0612345678)"
+          value={form.telephone}
+          onChange={handleChange}
         />
         <select
-            value={form.role}
-            onChange={(e) => {
-              setForm({ ...form, role: e.target.value });
-              console.log("Role choisi :", e.target.value);
-            }}
-          >
-          <option value="manager">manager</option>
-          <option value="client">client</option>
+          name="role"
+          value={form.role}
+          onChange={handleChange}
+        >
+          <option value="">-- Sélectionner un rôle --</option>
+          <option value="manager">Manager</option>
+          <option value="agent">Agent</option>
         </select>
-        <button>Create Account</button>
+        <button type="submit" className="register-btn">
+          S'inscrire
+        </button>
       </form>
     </div>
   );

@@ -7,29 +7,25 @@ export default function Home() {
 
   return (
     <div className="home-container">
-      <div className="home-card">
-
+      <div className="home-left">
         <img
           src="https://cdn-icons-png.flaticon.com/512/483/483361.png"
           alt="bank"
           className="home-image"
         />
-
-        <h1>Welcome to MHA Bank</h1>
-
+      </div>
+      <div className="home-right">
+        <h1 className="home-title">MHABank</h1>
         <p className="home-text">
-          MHA Bank — votre partenaire financier moderne.  
           Gérez vos comptes, consultez vos opérations et administrez
           facilement votre espace bancaire en toute sécurité.
         </p>
-
         <div className="home-buttons">
           <button className="btn login" onClick={() => navigate("/signin")}>
-            Sign In
+            Se connecter
           </button>
-
           <button className="btn signup" onClick={() => navigate("/signup")}>
-            Sign Up
+            S'inscrire
           </button>
         </div>
       </div>

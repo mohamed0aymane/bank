@@ -1,41 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CompteList from "../Get/CompteList";
-import UploadXml from "../UploadXml/UploadXml";
-import CompteSearch from "../CompteSearch/CompteSearch";
+import { jwtDecode } from "jwt-decode";
+import Navbar from "../Navbar/Navbar";
 import "./Dashboard.css";
 
 export default function Dashboard() {
+  const [role, setRole] = useState("");
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        setRole(decoded.role);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  }, [token]);
+
   return (
     <div className="dashboard-container">
+      <Navbar role={role} />
 
-      <div className="dashboard-header">
-        <h1 className="dashboard-title">Dashboard</h1>
+      <div className="dashboard-body">
+        {role === "manager" && (
+          <div className="dashboard-sidebar">
+            <button
+              className="addcompte-btn"
+              onClick={() => window.location.href = "/comptes/import"}
+            >
+              Importer un fichier XML
+            </button>
 
-        <button
-          className="logout-btn"
-          onClick={() => {
-            localStorage.removeItem("token");
-            window.location.href = "/";
-          }}
-        >
-          Logout
-        </button>
+            <button
+              className="addcompte-btn"
+              onClick={() => window.location.href = "/comptes/add"}
+            >
+              Ajouter un nouveau compte
+            </button>
+          </div>
+        )}
+
+        <div className="dashboard-main">
+          <CompteList role={role} />
+        </div>
       </div>
-
-      <div className="section-box">
-        <h2 className="section-title">Importer un fichier XML</h2>
-        <UploadXml />
-      </div>
-      <div className="section-box">
-        <h2 className="section-title">Recherche de Comptes</h2>
-        <CompteSearch />
-      </div>
-
-      <div className="section-box">
-        <h2 className="section-title">Liste des Comptes</h2>
-        <CompteList />
-      </div>
-
     </div>
   );
 }

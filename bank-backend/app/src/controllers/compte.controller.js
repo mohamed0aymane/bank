@@ -28,32 +28,30 @@ export const list = async (req, res) => {
 export const searchComptes = async (req, res) => {
   try {
     const { q, statut } = req.query;
-
     const filter = {};
 
-    // Recherche nom/prenom combinée
+    const andConditions = [];
+
     if (q) {
-      const regex = new RegExp(q, "i"); 
-
-      filter.$or = [
-        { nom: regex },
-        { prenom: regex },
-        { $expr: { $regexMatch: { input: { $concat: ["$nom", " ", "$prenom"] }, regex: q, options: "i" } } },
-        { $expr: { $regexMatch: { input: { $concat: ["$prenom", " ", "$nom"] }, regex: q, options: "i" } } }
-      ];
+      const words = q.trim().split(/\s+/);
+      words.forEach(word => {
+        andConditions.push({
+          $or: [
+            { nom: { $regex: word, $options: "i" } },
+            { prenom: { $regex: word, $options: "i" } }
+          ]
+        });
+      });
     }
 
-    // Recherche statut active/desactive
     if (statut) {
-      filter.statut = statut.toLowerCase();
+      andConditions.push({ statut: statut.toLowerCase() });
     }
+
+    if (andConditions.length > 0) filter.$and = andConditions;
 
     const results = await Compte.find(filter);
-
-    res.json({
-      count: results.length,
-      results
-    });
+    res.json({ count: results.length, results });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Error while searching", error: err.message });

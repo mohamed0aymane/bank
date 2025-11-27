@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./CompteList.css";
 
-export default function CompteList() {
+export default function CompteList({ role }) {
   const [comptes, setComptes] = useState([]);
   const token = localStorage.getItem("token");
 
@@ -60,36 +60,43 @@ export default function CompteList() {
     <div className="compte-container">
       <h2>Liste des Comptes</h2>
 
-      <a href="/comptes/add" className="add-btn">Ajouter un compte</a>
-
-      {comptes.map((c) => (
-        <div key={c.id} className="compte-card">
-          <div className="compte-name">{c.nom} {c.prenom}</div>
-          <div className="info-line"><span className="info-label">Solde :</span> {c.solde} {c.devise}</div>
-          <div className="info-line"><span className="info-label">Email :</span> {c.email}</div>
-          <div className="info-line"><span className="info-label">Numéro :</span> {c.numero}</div>
-          <div className="info-line"><span className="info-label">Type :</span> {c.type}</div>
-          <div className="info-line"><span className="info-label">Date création :</span> {new Date(c.dateCreation).toLocaleDateString()}</div>
-          <div className="info-line"><span className="info-label">Statut :</span> {c.statut}</div>
-
-          <div style={{ marginTop: 15 }}>
-            <button className="btn-delete" onClick={() => removeCompte(c.id)}>
-              Supprimer
-            </button>
-            <a href={`/comptes/edit/${c.id}`} className="btn-edit">
-              Modifier
-            </a>
-             <button
-                type="button"
-                className="modifiercompte-back"
-                onClick={() => (window.location.href = "/dashboard")}
-                style={{ marginLeft: 10 }}
-              >
-                Retour Dashboard
-              </button>
-          </div>
-        </div>
-      ))}
+      <table className="compte-table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Email</th>
+            <th>Numéro</th>
+            <th>Type</th>
+            <th>Solde</th>
+            <th>Devise</th>
+            <th>Date création</th>
+            <th>Statut</th>
+            {role === "manager" && <th>Actions</th>}
+          </tr>
+        </thead>
+        <tbody>
+          {comptes.map((c) => (
+            <tr key={c.id}>
+              <td>{c.nom}</td>
+              <td>{c.prenom}</td>
+              <td>{c.email}</td>
+              <td>{c.numero}</td>
+              <td>{c.type}</td>
+              <td>{c.solde}</td>
+              <td>{c.devise}</td>
+              <td>{new Date(c.dateCreation).toLocaleDateString()}</td>
+              <td>{c.statut}</td>
+              {role === "manager" && (
+                <td>
+                  <a href={`/comptes/edit/${c.id}`} className="btn-edit">Modifier</a>
+                  <button className="btn-delete" onClick={() => removeCompte(c.id)}>Supprimer</button>
+                </td>
+              )}
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
