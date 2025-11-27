@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const CompteSchema = new mongoose.Schema(
   {
-    id: { type: String, required: true, unique: true },  // ID venant du XML
+    id: { type: String, required: true, unique: true },  
     nom: String,
     prenom: String,
     email: String,

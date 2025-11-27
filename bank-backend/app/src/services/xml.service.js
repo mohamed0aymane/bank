@@ -15,7 +15,7 @@ export function validateXmlAgainstXsd(xmlBuffer, xsdString) {
 
 export async function parseXmlToJson(xmlBuffer) {
   return await parseStringPromise(xmlBuffer.toString(), {
-    explicitArray: true,  // IMPORTANT !
+    explicitArray: true,  
     mergeAttrs: false
   });
 }

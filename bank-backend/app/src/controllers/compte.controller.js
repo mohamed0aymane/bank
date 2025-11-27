@@ -7,53 +7,143 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// LISTE DES COMPTES
 export const list = async (req, res) => {
-  res.json(await Compte.find());
+  try {
+    if (req.user.role === "manager") {
+      const comptes = await Compte.find();
+      return res.json(comptes);
+    } else if (req.user.role === "agent") {
+      const comptes = await Compte.find({ email: req.user.email });
+      return res.json(comptes);
+    } else {
+      return res.status(403).json({ message: "Forbidden" });
+    }
+  } catch (err) {
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
 };
 
 
-export const create = async (req, res) => {
-  const c = new Compte(req.body);
-  await c.save();
-  res.status(201).json(c);
+export const searchComptes = async (req, res) => {
+  try {
+    const { q, statut } = req.query;
+
+    const filter = {};
+
+    // Recherche nom/prenom combinée
+    if (q) {
+      const regex = new RegExp(q, "i"); 
+
+      filter.$or = [
+        { nom: regex },
+        { prenom: regex },
+        { $expr: { $regexMatch: { input: { $concat: ["$nom", " ", "$prenom"] }, regex: q, options: "i" } } },
+        { $expr: { $regexMatch: { input: { $concat: ["$prenom", " ", "$nom"] }, regex: q, options: "i" } } }
+      ];
+    }
+
+    // Recherche statut active/desactive
+    if (statut) {
+      filter.statut = statut.toLowerCase();
+    }
+
+    const results = await Compte.find(filter);
+
+    res.json({
+      count: results.length,
+      results
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Error while searching", error: err.message });
+  }
 };
 
+
+// GET UN COMPTE
 export const get = async (req, res) => {
-  const c = await Compte.findOne({ id: req.params.id });
-  if (!c) return res.status(404).json({ message: "Not found" });
-  res.json(c);
+  try {
+    const c = await Compte.findOne({ id: req.params.id });
+    if (!c) return res.status(404).json({ message: "Not found" });
+
+    if (req.user.role === "agent" && c.email !== req.user.email)
+      return res.status(403).json({ message: "Forbidden" });
+
+    res.json(c);
+  } catch (err) {
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
 };
 
+
+// CREATE COMPTE
+export const create = async (req, res) => {
+  try {
+    const c = new Compte(req.body);
+    await c.save();
+    res.status(201).json(c);
+  } catch (err) {
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+};
+
+// UPDATE COMPTE
 export const update = async (req, res) => {
-  const c = await Compte.findOneAndUpdate(
-    { id: req.params.id },
-    req.body,
-    { new: true }
-  );
-  
-  if (!c) return res.status(404).json({ message: "Not found" });
-  res.json(c);
+  try {
+    const c = await Compte.findOne({ id: req.params.id });
+    if (!c) return res.status(404).json({ message: "Not found" });
+
+    if (req.user.role === "agent" && c.email !== req.user.email)
+      return res.status(403).json({ message: "Forbidden" });
+
+    // Champs modifiables selon rôle
+    const allowedFields = req.user.role === "manager"
+      ? ["nom","prenom","email","numero","type","solde","devise","dateCreation","statut"]
+      : ["email","password"]; // password à gérer séparément si c'est agent
+
+    const updateData = {};
+    for (const key of allowedFields) {
+      if (req.body[key] !== undefined) updateData[key] = req.body[key];
+    }
+
+    const updated = await Compte.findOneAndUpdate(
+      { id: req.params.id },
+      updateData,
+      { new: true }
+    );
+
+    res.json(updated);
+  } catch (err) {
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
 };
 
+// DELETE COMPTE
 export const remove = async (req, res) => {
-  const c = await Compte.findOneAndDelete({ id: req.params.id });
-  if (!c) return res.status(404).json({ message: "Not found" });
-  
-  res.json({ message: "Deleted" });
+  try {
+    const c = await Compte.findOne({ id: req.params.id });
+    if (!c) return res.status(404).json({ message: "Not found" });
+
+    if (req.user.role === "agent") return res.status(403).json({ message: "Forbidden" });
+
+    await Compte.deleteOne({ id: req.params.id });
+    res.json({ message: "Deleted" });
+  } catch (err) {
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
 };
 
-
+// IMPORT XML
 export const importXml = async (req, res) => {
   try {
-    if (!req.file)
-      return res.status(400).json({ message: "No file provided" });
+    if (!req.file) return res.status(400).json({ message: "No file provided" });
 
     const xsdPath = path.join(__dirname, "..", "data", "banque.xsd");
     const xsdString = fs.readFileSync(xsdPath, "utf8");
 
     const { valid, errors } = validateXmlAgainstXsd(req.file.buffer, xsdString);
-    if (!valid)
-      return res.status(400).json({ message: "XML invalid", errors });
+    if (!valid) return res.status(400).json({ message: "XML invalid", errors });
 
     const json = await parseXmlToJson(req.file.buffer);
     const comptesRaw = json.banque.comptes[0].compte;

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<comptes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="comptes.xsd">
+
+  <compte id="C004">
+    <nom>Lamhamdi</nom>
+    <prenom>Aymane</prenom>
+    <email>aymane@gmail.com</email>
+    <numero>0700000007</numero>
+    <type>courant</type>
+    <solde>12500.75</solde>
+    <devise>dh</devise>
+    <dateCreation>2024-09-01</dateCreation>
+    <statut>active</statut>
+  </compte>
+   <compte id="C005">
+    <nom>Lamhamdi</nom>
+    <prenom>Aymane</prenom>
+    <email>aymane@gmail.com</email>
+    <numero>0700000007</numero>
+    <type>courant</type>
+    <solde>12500.75</solde>
+    <devise>dh</devise>
+    <dateCreation>2024-09-01</dateCreation>
+    <statut>active</statut>
+  </compte>
+   <compte id="C006">
+    <nom>Lamhamdi</nom>
+    <prenom>Aymane</prenom>
+    <email>aymane@gmail.com</email>
+    <numero>0700000007</numero>
+    <type>courant</type>
+    <solde>12500.75</solde>
+    <devise>dh</devise>
+    <dateCreation>2024-09-01</dateCreation>
+    <statut>active</statut>
+  </compte>
+
+</comptes>

@@ -14,12 +14,12 @@ export default function Register() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://192.168.100.135:4000/api/auth/signup", {
+      const res = await fetch("http://192.168.100.10:4000/api/auth/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include", // équivalent de withCredentials: true
+        credentials: "include", 
         body: JSON.stringify(form),
       });
 

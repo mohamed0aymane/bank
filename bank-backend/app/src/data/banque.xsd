@@ -4,8 +4,8 @@
 
   <!-- ====================== TYPES SIMPLES ====================== -->
 
-  <!-- Email client (compte) -->
-  <xs:simpleType name="EmailClientType">
+  <!-- Email agent (compte) -->
+  <xs:simpleType name="EmailAgentType">
     <xs:restriction base="xs:string">
       <xs:pattern value="[a-zA-Z0-9]+@gmail\.com"/>
     </xs:restriction>
@@ -29,7 +29,7 @@
   <xs:simpleType name="RoleType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="manager"/>
-      <xs:enumeration value="client"/>
+      <xs:enumeration value="agent"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -54,18 +54,18 @@
     <xs:sequence>
       <xs:element name="nom" type="xs:string"/>
       <xs:element name="prenom" type="xs:string"/>
-      <xs:element name="role" fixed="manager"/>
+      <xs:element name="role" default="manager"/>
       <xs:element name="email" type="EmailManagerType"/>
       <xs:element name="telephone" type="TelephoneType"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="UtilisateurClientType">
+  <xs:complexType name="UtilisateurAgentType">
     <xs:sequence>
       <xs:element name="nom" type="xs:string"/>
       <xs:element name="prenom" type="xs:string"/>
-      <xs:element name="role" fixed="client"/>
-      <xs:element name="email" type="EmailClientType"/>
+      <xs:element name="role" fixed="agent"/>
+      <xs:element name="email" type="EmailAgentType"/>
       <xs:element name="telephone" type="TelephoneType"/>
     </xs:sequence>
     
@@ -75,7 +75,7 @@
     <xs:complexType>
       <xs:choice maxOccurs="unbounded">
         <xs:element name="manager" type="UtilisateurManagerType"/>
-        <xs:element name="client" type="UtilisateurClientType"/>
+        <xs:element name="agent" type="UtilisateurAgentType"/>
       </xs:choice>
     </xs:complexType>
   </xs:element>
@@ -88,7 +88,7 @@
     
       <xs:element name="nom" type="xs:string"/>
       <xs:element name="prenom" type="xs:string"/>
-      <xs:element name="email" type="EmailClientType"/>
+      <xs:element name="email" type="EmailAgentType"/>
 
       <xs:element name="numero" type="TelephoneType"/>
       <xs:element name="type" type="xs:string"/>

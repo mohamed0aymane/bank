@@ -1,6 +1,7 @@
 import React from "react";
 import CompteList from "../Get/CompteList";
 import UploadXml from "../UploadXml/UploadXml";
+import CompteSearch from "../CompteSearch/CompteSearch";
 import "./Dashboard.css";
 
 export default function Dashboard() {
@@ -24,6 +25,10 @@ export default function Dashboard() {
       <div className="section-box">
         <h2 className="section-title">Importer un fichier XML</h2>
         <UploadXml />
+      </div>
+      <div className="section-box">
+        <h2 className="section-title">Recherche de Comptes</h2>
+        <CompteSearch />
       </div>
 
       <div className="section-box">

@@ -23,13 +23,13 @@ export default function AddCompte() {
   const submit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://192.168.100.135:4000/api/comptes", {
+      const response = await fetch("http://192.168.100.10:4000/api/comptes", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + token,
         },
-        credentials: "include", // équivalent de withCredentials: true
+        credentials: "include", 
         body: JSON.stringify(form),
       });
 

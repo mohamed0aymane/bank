@@ -17,13 +17,13 @@ export default function UploadXml() {
     formData.append("file", file);
 
     try {
-      const res = await fetch("http://192.168.100.135:4000/api/comptes/import", {
+      const res = await fetch("http://192.168.100.10:4000/api/comptes/import", {
         method: "POST",
         headers: {
           Authorization: "Bearer " + token,
-          // Ne pas définir Content-Type ici pour FormData : fetch le gère automatiquement
+          
         },
-        credentials: "include", // équivalent de withCredentials: true
+        credentials: "include", 
         body: formData,
       });
 

@@ -12,20 +12,65 @@
       <telephone>0612345678</telephone>
     </manager>
 
-   
+      <manager>
+      <nom>Lamhamdi</nom>
+      <prenom>Safae</prenom>
+      <role>agent</role>
+      <email>lamhamdi.amine@mhabank.com</email>
+      <telephone>0612345678</telephone>
+    </manager>
 
   </utilisateurs>
 
   <comptes>
 
-    <compte id ="C004">
+    <compte id ="C001">
      
       <nom>Lamhamdi</nom>
       <prenom>Aymane</prenom>
       <email>aymane@gmail.com</email>
       <numero>0700000007</numero>
       <type>courant</type>
+      <solde>1255</solde>
+      <devise>dh</devise>
+      <dateCreation>2024-09-01</dateCreation>
+      <statut>active</statut>
+    </compte>
+    
+    <compte id ="C002">
+     
+      <nom>Lamhamdi</nom>
+      <prenom>Amine</prenom>
+      <email>amine@gmail.com</email>
+      <numero>0700000007</numero>
+      <type>courant</type>
+      <solde>1000</solde>
+      <devise>dh</devise>
+      <dateCreation>2024-09-01</dateCreation>
+      <statut>active</statut>
+    </compte>
+    
+    <compte id ="C004">
+     
+      <nom>Lamhamdi</nom>
+      <prenom>Anass</prenom>
+      <email>anass@gmail.com</email>
+      <numero>0700000007</numero>
+      <type>courant</type>
       <solde>12500.75</solde>
+      <devise>dh</devise>
+      <dateCreation>2024-09-01</dateCreation>
+      <statut>active</statut>
+    </compte>
+
+     <compte id ="C005">
+     
+      <nom>Lamhamdi</nom>
+      <prenom>Ayoub</prenom>
+      <email>ayoub@gmail.com</email>
+      <numero>0700000007</numero>
+      <type>courant</type>
+      <solde>128000</solde>
       <devise>dh</devise>
       <dateCreation>2024-09-01</dateCreation>
       <statut>active</statut>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<util:utilisateurs xmlns:util="http://www.example.com/utilisateurs"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.example.com/utilisateurs utilisateurs.xsd">
+
+  <util:manager>
+    <util:nom>Lamhamdi</util:nom>
+    <util:prenom>Aymane</util:prenom>
+    <util:role>manager</util:role>
+    <util:email>lamhamdi.aymane@mhabank.com</util:email>
+    <util:telephone>0612345678</util:telephone>
+  </util:manager>
+
+  <util:client>
+    <util:nom>Lamhamdi</util:nom>
+    <util:prenom>Aymane</util:prenom>
+    <util:role>client</util:role>
+    <util:email>aymane@gmail.com</util:email>
+    <util:telephone>0700000007</util:telephone>
+  </util:client>
+
+  <util:client>
+    <util:nom>Lamhamdi</util:nom>
+    <util:prenom>Amine</util:prenom>
+    <util:role>client</util:role>
+    <util:email>amine@gmail.com</util:email>
+    <util:telephone>0705797152</util:telephone>
+  </util:client>
+
+</util:utilisateurs>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:util="http://www.example.com/utilisateurs"
+           elementFormDefault="qualified">
+
+  <!-- Importation du XSD des utilisateurs -->
+  <xs:import namespace="http://www.example.com/utilisateurs"
+             schemaLocation="utilisateurs.xsd"/>
+
+  <!-- Types simples spécifiques aux comptes -->
+  <xs:simpleType name="StatutType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="active"/>
+      <xs:enumeration value="desactive"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="DeviseType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="dh"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Type complexe Compte -->
+  <xs:complexType name="CompteType">
+    <xs:sequence>
+      <xs:element name="nom" type="xs:string"/>
+      <xs:element name="prenom" type="xs:string"/>
+      <xs:element name="email" type="util:EmailClientType"/>
+      <xs:element name="numero" type="util:TelephoneType"/>
+      <xs:element name="type" type="xs:string"/>
+      <xs:element name="solde">
+        <xs:simpleType>
+          <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0.00"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="devise" type="DeviseType"/>
+      <xs:element name="dateCreation" type="xs:date"/>
+      <xs:element name="statut" type="StatutType"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID" use="required"/>
+  </xs:complexType>
+
+  <!-- Élément racine comptes -->
+  <xs:element name="comptes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="compte" type="CompteType" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

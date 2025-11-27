@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.example.com/utilisateurs"
+           xmlns:util="http://www.example.com/utilisateurs"
+           elementFormDefault="qualified">
+
+  <xs:simpleType name="EmailManagerType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[a-z]+\.[a-z]+@mhabank\.com"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="EmailClientType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[a-zA-Z0-9]+@gmail\.com"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="TelephoneType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{10}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="UtilisateurManagerType">
+    <xs:sequence>
+      <xs:element name="nom" type="xs:string"/>
+      <xs:element name="prenom" type="xs:string"/>
+      <xs:element name="role" fixed="manager"/>
+      <xs:element name="email" type="util:EmailManagerType"/>
+      <xs:element name="telephone" type="util:TelephoneType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="UtilisateurClientType">
+    <xs:sequence>
+      <xs:element name="nom" type="xs:string"/>
+      <xs:element name="prenom" type="xs:string"/>
+      <xs:element name="role" fixed="client"/>
+      <xs:element name="email" type="util:EmailClientType"/>
+      <xs:element name="telephone" type="util:TelephoneType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="utilisateurs">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element name="manager" type="util:UtilisateurManagerType"/>
+        <xs:element name="client" type="util:UtilisateurClientType"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

@@ -20,7 +20,7 @@ export default function EditCompte() {
 
   const load = async () => {
     try {
-      const res = await fetch(`http://192.168.100.135:4000/api/comptes/${id}`, {
+      const res = await fetch(`http://192.168.100.10:4000/api/comptes/${id}`, {
         method: "GET",
         headers: { Authorization: "Bearer " + token },
         credentials: "include",
@@ -56,7 +56,7 @@ export default function EditCompte() {
     e.preventDefault();
 
     try {
-      const res = await fetch(`http://192.168.100.135:4000/api/comptes/${id}`, {
+      const res = await fetch(`http://192.168.100.10:4000/api/comptes/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

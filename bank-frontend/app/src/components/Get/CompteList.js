@@ -7,12 +7,12 @@ export default function CompteList() {
 
   const load = async () => {
     try {
-      const res = await fetch("http://192.168.100.135:4000/api/comptes", {
+      const res = await fetch("http://192.168.100.10:4000/api/comptes", {
         method: "GET",
         headers: {
           Authorization: "Bearer " + token,
         },
-        credentials: "include", // équivalent de withCredentials: true
+        credentials: "include",
       });
 
       if (!res.ok) {
@@ -36,7 +36,7 @@ export default function CompteList() {
     if (!window.confirm("Supprimer ce compte ?")) return;
 
     try {
-      const res = await fetch(`http://192.168.100.135:4000/api/comptes/${id}`, {
+      const res = await fetch(`http://192.168.100.10:4000/api/comptes/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: "Bearer " + token,
@@ -79,6 +79,14 @@ export default function CompteList() {
             <a href={`/comptes/edit/${c.id}`} className="btn-edit">
               Modifier
             </a>
+             <button
+                type="button"
+                className="modifiercompte-back"
+                onClick={() => (window.location.href = "/dashboard")}
+                style={{ marginLeft: 10 }}
+              >
+                Retour Dashboard
+              </button>
           </div>
         </div>
       ))}

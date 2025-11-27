@@ -8,12 +8,12 @@ export default function Login() {
   const login = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://192.168.100.135:4000/api/auth/signin", {
+      const res = await fetch("http://192.168.100.10:4000/api/auth/signin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include", // équivalent de withCredentials: true
+        credentials: "include", 
         body: JSON.stringify({ email, password }),
       });
 
