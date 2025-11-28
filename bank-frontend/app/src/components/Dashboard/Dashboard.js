@@ -4,6 +4,7 @@ import { jwtDecode } from "jwt-decode";
 import Navbar from "../Navbar/Navbar";
 import "./Dashboard.css";
 
+
 export default function Dashboard() {
   const [role, setRole] = useState("");
   const token = localStorage.getItem("token");
@@ -46,6 +47,7 @@ export default function Dashboard() {
           <CompteList role={role} />
         </div>
       </div>
+       
     </div>
   );
 }

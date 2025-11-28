@@ -25,6 +25,7 @@ import Footer from "./components/Footer/Footer";
 function App() {
   return (
     <BrowserRouter>
+    <div className="app-container">
       <Routes>
         {/* Page d'accueil */}
         <Route path="/" element={<Home />} />
@@ -93,7 +94,8 @@ function App() {
           }
         />
       </Routes>
-      <Footer />
+      <Footer/>
+      </div>
     </BrowserRouter>
   );
 }

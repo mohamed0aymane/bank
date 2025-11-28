@@ -1,77 +1,97 @@
 .compte-detail-container {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 30px;
-  background-color: #f1faee; /* fond clair comme dashboard */
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  font-family: Arial, sans-serif;
+  max-width: 650px;
+  margin: 2.5rem auto;
+  animation: fadeInUp 0.8s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.compte-detail-container h2 {
-  text-align: center;
-  color: #1d3557; /* bleu foncé pour titres */
-  margin-bottom: 25px;
-  font-size: 2rem;
-  font-weight: bold;
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px);}
+  to { opacity: 1; transform: translateY(0);}
 }
 
-.compte-detail-container ul {
+.compte-detail-content {
+  background: #fff;
+  border-radius: 25px;
+  padding: 2.5rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.compte-detail-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.18);
+}
+
+.compte-detail-content h2 {
+  margin-bottom: 1.5rem;
+  color: #333;
+  font-size: 1.8rem;
+}
+
+.compte-detail-content ul {
   list-style: none;
+  line-height: 2.2;
   padding: 0;
+  color: #555;
 }
 
-.compte-detail-container ul li {
-  padding: 12px 15px;
-  margin-bottom: 10px;
-  background-color: #fff;
-  border-radius: 10px;
-  border-left: 5px solid #f4a261; /* accent ocre comme boutons */
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  transition: all 0.2s ease-in-out;
+.compte-detail-content ul li b {
+  color: #333;
 }
 
-.compte-detail-container ul li:hover {
-  transform: translateX(3px);
-  background-color: #eaf4f4; /* léger survol bleu clair */
+.detail-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  gap: 1rem;
 }
 
-.compte-detail-container button {
-  display: block;
-  margin: 25px auto 0;
-  padding: 12px 30px;
-  font-size: 1rem;
-  background-color: #f4a261; /* bouton accent */
-  color: #fff;
+
+.detail-buttons button {
+  padding: 0.8rem 1.8rem;
   border: none;
-  border-radius: 10px;
+  border-radius: 50px;
+  font-weight: 600;
   cursor: pointer;
-  font-weight: bold;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease;
+  font-size: 1rem;
 }
 
-.compte-detail-container button:hover {
-  background-color: #e76f51; /* hover ocre foncé */
-  transform: translateY(-2px);
+.detail-buttons button:first-child {
+  background: #f0f0f0;
+  color: #333;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+.detail-buttons button:first-child:hover {
+  background: #e0e0e0;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+
+.pdf-btn {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+}
+
+.pdf-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+
+@media (max-width: 700px) {
   .compte-detail-container {
-    margin: 20px;
-    padding: 20px;
+    margin: 1rem;
   }
 
-  .compte-detail-container h2 {
-    font-size: 1.6rem;
+  .detail-buttons {
+    flex-direction: column;
+    gap: 1rem;
   }
 
-  .compte-detail-container ul li {
-    padding: 10px 12px;
-  }
-
-  .compte-detail-container button {
-    padding: 10px 20px;
-    font-size: 0.9rem;
+  .detail-buttons button {
+    width: 100%;
   }
 }

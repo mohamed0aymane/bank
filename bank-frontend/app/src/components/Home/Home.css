@@ -1,70 +1,128 @@
 .home-container {
   display: flex;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #4f93ce, #28527a);
-  font-family: 'Arial', sans-serif;
+  flex-direction: row;
+  height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
   color: #fff;
+  overflow: hidden;
+  padding: 2rem;
 }
+
 
 .home-left {
   flex: 1;
   display: flex;
-  justify-content: center;
   align-items: center;
-  background: #1d3557;
+  justify-content: center;
+  animation: slideInLeft 1s ease forwards;
+}
+
+.image-wrapper {
+  position: relative;
 }
 
 .home-image {
-  width: 80%;
-  max-width: 400px;
+  width: 350px;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  transition: transform 0.6s ease;
+  z-index: 2;
 }
+
+.home-image:hover {
+  transform: scale(1.1) rotate(-3deg);
+}
+
+
+.reflection {
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to top, rgba(255,255,255,0.2), transparent);
+  transform: scaleY(-1);
+  border-radius: 20px;
+  filter: blur(4px);
+  z-index: 1;
+}
+
 
 .home-right {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding: 50px;
-  background: #457b9d;
-  border-top-left-radius: 50px;
-  border-bottom-left-radius: 50px;
+  padding: 2rem 4rem;
+  animation: slideInRight 1s ease forwards;
 }
 
 .home-title {
   font-size: 3rem;
-  margin-bottom: 20px;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
 }
 
-.home-text {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
-  text-align: center;
+.home-subtitle {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
 }
+
+.home-subtitle span {
+  color: #ffb347;
+  font-weight: 600;
+}
+
+.home-features {
+  list-style: none;
+  line-height: 2;
+  margin-bottom: 2rem;
+}
+
+.home-features li {
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+
 
 .home-buttons .btn {
-  margin: 10px;
-  padding: 15px 40px;
-  font-size: 1rem;
+  padding: 0.8rem 2rem;
+  margin-right: 1rem;
   border: none;
-  border-radius: 30px;
+  border-radius: 50px;
+  font-weight: 600;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: all 0.4s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 .home-buttons .login {
-  background: #f4a261;
-  color: #1d3557;
-}
-
-.home-buttons .signup {
-  background: #e63946;
+  background: linear-gradient(135deg, #ffb347, #ffcc33);
   color: #fff;
 }
 
-.home-buttons .btn:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+.home-buttons .login:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.home-buttons .signup {
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  color: #fff;
+}
+
+.home-buttons .signup:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
 }

@@ -8,18 +8,22 @@ export default function Home() {
   return (
     <div className="home-container">
       <div className="home-left">
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/483/483361.png"
-          alt="bank"
-          className="home-image"
-        />
+        <div className="image-wrapper">
+ 
+          <img src="/images/image.png" alt="MHABank" className="home-image" />
+          <div className="reflection"></div>
+        </div>
       </div>
       <div className="home-right">
         <h1 className="home-title">MHABank</h1>
-        <p className="home-text">
-          Gérez vos comptes, consultez vos opérations et administrez
-          facilement votre espace bancaire en toute sécurité.
+        <p className="home-subtitle">
+          Votre banque digitale <span>fiable</span>, <span>rapide</span> et <span>sécurisée</span>.
         </p>
+        <ul className="home-features">
+          <li>💳 Gérez vos comptes facilement</li>
+          <li>🔒 Sécurité bancaire de pointe</li>
+          
+        </ul>
         <div className="home-buttons">
           <button className="btn login" onClick={() => navigate("/signin")}>
             Se connecter

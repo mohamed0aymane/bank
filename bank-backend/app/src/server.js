@@ -6,7 +6,7 @@ import connectDB from "./config/db.js";
 import authRoutes from "./routes/auth.js";
 import comptesRoutes from "./routes/comptes.js";
 
-dotenv.config(); // Charge .env
+dotenv.config(); 
 
 export default class Server {
 
@@ -17,8 +17,6 @@ export default class Server {
         this.config();
         this.routes();
     }
-
-
     config() {
         this.app.use(cors({
         origin: ['http://localhost:3000', 'http://192.168.100.10:3000'],
@@ -27,21 +25,14 @@ export default class Server {
 
         this.app.use(express.json());
     }
-
-    
     routes() {
         this.app.use("/api/auth", authRoutes);
         this.app.use("/api/comptes", comptesRoutes);
-        
 
-
-        
         this.app.get("/", (req, res) => {
             res.send("Bank backend running");
         });
     }
-
-   
     async start(callback) {
         try {
             await connectDB(process.env.MONGO_URI);

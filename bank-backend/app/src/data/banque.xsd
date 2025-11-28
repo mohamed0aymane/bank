@@ -2,30 +2,28 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified">
 
-  <!-- ====================== TYPES SIMPLES ====================== -->
-
-  <!-- Email agent (compte) -->
+  
   <xs:simpleType name="EmailAgentType">
     <xs:restriction base="xs:string">
       <xs:pattern value="[a-zA-Z0-9]+@gmail\.com"/>
     </xs:restriction>
   </xs:simpleType>
 
-  <!-- Email manager -->
+
   <xs:simpleType name="EmailManagerType">
     <xs:restriction base="xs:string">
       <xs:pattern value="[a-z]+\.[a-z]+@mhabank\.com"/>
     </xs:restriction>
   </xs:simpleType>
 
-  <!-- Téléphone : 10 chiffres -->
+
   <xs:simpleType name="TelephoneType">
     <xs:restriction base="xs:string">
       <xs:pattern value="[0-9]{10}"/>
     </xs:restriction>
   </xs:simpleType>
 
-  <!-- Rôle -->
+
   <xs:simpleType name="RoleType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="manager"/>
@@ -33,7 +31,7 @@
     </xs:restriction>
   </xs:simpleType>
 
-  <!-- Statut -->
+ 
   <xs:simpleType name="StatutType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="active"/>
@@ -41,7 +39,7 @@
     </xs:restriction>
   </xs:simpleType>
 
-  <!-- Devise obligatoire en dh -->
+  
   <xs:simpleType name="DeviseType">
     <xs:restriction base="xs:string">
       <xs:pattern value="dh"/>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./EditCompte.css";
 
+
 export default function EditCompte() {
   const { id } = useParams();
   const token = localStorage.getItem("token");
@@ -13,10 +14,14 @@ export default function EditCompte() {
     numero: "",
     type: "",
     solde: "",
-    devise: "",
+    devise: "dh",
     dateCreation: "",
     statut: "",
   });
+
+  const [originalDate, setOriginalDate] = useState("");
+  const externalEmail = /^[a-zA-Z0-9._]+@(gmail|hotmail|yahoo|outlook)\.com$/;
+  const phoneRegex = /^(06|07)\d{8}$/
 
   const load = async () => {
     try {
@@ -33,11 +38,14 @@ export default function EditCompte() {
 
       const data = await res.json();
 
-      // convertir date pour affichage input type=date
+   
       if (data.dateCreation) {
-        data.dateCreation = data.dateCreation.split("T")[0];
+        const isoDate = data.dateCreation.split("T")[0];
+        data.dateCreation = isoDate;
+        setOriginalDate(isoDate);
       }
 
+      data.devise = "dh"; 
       setForm(data);
     } catch (err) {
       console.error(err);
@@ -54,6 +62,23 @@ export default function EditCompte() {
 
   const submit = async (e) => {
     e.preventDefault();
+
+      
+    if (!externalEmail.test(form.email)) {
+      alert("Email invalide ! Seuls gmail.com, hotmail.com, yahoo.com, outlook.com sont acceptés.");
+      return;
+    }
+
+    
+    if (!phoneRegex.test(form.numero)) {
+      alert("Numéro de téléphone invalide ! Format accepté : 06XXXXXXXX ou 07XXXXXXXX");
+      return;
+    }
+
+    if (form.dateCreation < originalDate) {
+      alert("La date de création ne peut pas être antérieure à la date d'origine.");
+      return;
+    }
 
     try {
       const res = await fetch(`http://192.168.100.10:4000/api/comptes/${id}`, {
@@ -84,20 +109,15 @@ export default function EditCompte() {
       <form onSubmit={submit}>
         <h2>Modifier le Compte {id}</h2>
 
-        <input
-          type="text"
-          name="nom"
-          placeholder="Nom"
-          value={form.nom}
-          onChange={handleChange}
-        />
+        <input type="text" name="nom" placeholder="Nom" value={form.nom} readOnly />
         <input
           type="text"
           name="prenom"
           placeholder="Prénom"
           value={form.prenom}
-          onChange={handleChange}
+          readOnly
         />
+
         <input
           type="email"
           name="email"
@@ -126,12 +146,13 @@ export default function EditCompte() {
           value={form.solde}
           onChange={handleChange}
         />
+
+        
         <input
           type="text"
           name="devise"
-          placeholder="Devise"
-          value={form.devise}
-          onChange={handleChange}
+          value="dh"
+          disabled
         />
 
         <label>Date de création :</label>
@@ -139,6 +160,7 @@ export default function EditCompte() {
           type="date"
           name="dateCreation"
           value={form.dateCreation}
+          min={originalDate}     
           onChange={handleChange}
         />
 
@@ -159,6 +181,7 @@ export default function EditCompte() {
           Retour Dashboard
         </button>
       </form>
+        
     </div>
   );
 }

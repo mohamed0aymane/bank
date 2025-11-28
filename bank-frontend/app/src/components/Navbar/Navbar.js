@@ -75,7 +75,6 @@ export default function Navbar({ role }) {
         </button>
       </div>
 
-      {/* Affichage des résultats sous forme de dropdown cliquable */}
       {results.length > 0 && (
         <div className="navbar-search-results">
           {results.map((c) => (

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
 
+
 export default function Register() {
   const navigate = useNavigate();
   const [form, setForm] = useState({
@@ -20,9 +21,7 @@ export default function Register() {
   const validateForm = () => {
     const nameRegex = /^[A-Za-z]+$/;
     const phoneRegex = /^(06|07)\d{8}$/;
-    const emailRegex = new RegExp(
-      `^${form.nom.toLowerCase()}\\.${form.prenom.toLowerCase()}@bankmha\\.com$`
-    );
+    
 
     if (!nameRegex.test(form.nom)) {
       alert("Le nom doit contenir uniquement des lettres.");
@@ -41,12 +40,7 @@ export default function Register() {
       return false;
     }
 
-    if (!emailRegex.test(form.email)) {
-      alert(
-        `L'email doit avoir la structure : nom.prenom@bankmha.com`
-      );
-      return false;
-    }
+    
 
     if (!form.password) {
       alert("Le mot de passe est requis.");
@@ -109,7 +103,7 @@ export default function Register() {
         <input
           type="email"
           name="email"
-          placeholder="Email (nom.prenom@bankmha.com)"
+          placeholder="Email (nomprenom@bankmha.com)"
           value={form.email}
           onChange={handleChange}
         />
@@ -140,6 +134,7 @@ export default function Register() {
           S'inscrire
         </button>
       </form>
+      
     </div>
   );
 }

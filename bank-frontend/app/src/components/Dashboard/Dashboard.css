@@ -1,64 +1,47 @@
-/* Container général */
 .dashboard-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: Arial, sans-serif;
-  background-color: #f1faee;
+  background: #f5f6fa;
 }
 
-/* Navbar en haut */
 .dashboard-body {
   display: flex;
   flex: 1;
+  padding: 2rem;
+  gap: 2rem;
 }
 
-/* Sidebar gauche */
 .dashboard-sidebar {
   width: 250px;
-  background-color: #457b9d;
-  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 1rem;
 }
 
-.dashboard-sidebar button {
-  padding: 12px;
+.dashboard-sidebar .addcompte-btn {
+  padding: 0.8rem 1rem;
   border: none;
-  border-radius: 12px;
-  cursor: pointer;
+  border-radius: 50px;
   font-weight: bold;
-  font-size: 1rem;
+  cursor: pointer;
+  background: linear-gradient(135deg, #667eea, #764ba2);
   color: #fff;
-  background-color: #f4a261;
-  transition: 0.3s;
+  transition: all 0.3s ease;
 }
 
-.dashboard-sidebar button:hover {
-  background-color: #e76f51;
+.dashboard-sidebar .addcompte-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
-/* Main content à droite */
 .dashboard-main {
   flex: 1;
-  padding: 25px;
-  background-color: #f1faee;
-  overflow-x: auto;
+  animation: fadeIn 1s ease;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .dashboard-body {
-    flex-direction: column;
-  }
-  .dashboard-sidebar {
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-around;
-    margin-bottom: 20px;
-  }
-  .dashboard-main {
-    padding: 15px;
-  }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px);}
+  to { opacity: 1; transform: translateY(0);}
 }

@@ -66,7 +66,7 @@ export const get = async (req, res) => {
     if (!c) return res.status(404).json({ message: "Not found" });
 
   if (req.user.role === "agent") {
-  // retourner seulement certains champs
+  
   return res.json({
     id: c.id,
     nom: c.nom,
@@ -112,7 +112,7 @@ export const update = async (req, res) => {
     // Champs modifiables selon rôle
     const allowedFields = req.user.role === "manager"
       ? ["nom","prenom","email","numero","type","solde","devise","dateCreation","statut"]
-      : ["email","password"]; // password à gérer séparément si c'est agent
+      : ["email","password"]; 
 
     const updateData = {};
     for (const key of allowedFields) {

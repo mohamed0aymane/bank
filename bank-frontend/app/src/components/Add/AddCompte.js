@@ -78,7 +78,7 @@ export default function AddCompte() {
       }
 
       alert("Compte créé !");
-      window.location.href = "/comptes";
+      window.location.href = "/dashboard";  
     } catch (err) {
       console.error(err);
       alert("Erreur : " + err.message);
@@ -125,6 +125,8 @@ export default function AddCompte() {
       >
         Retour Dashboard
       </button>
+     
     </form>
+    
   );
 }

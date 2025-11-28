@@ -3,11 +3,10 @@
            xmlns:util="http://www.example.com/utilisateurs"
            elementFormDefault="qualified">
 
-  <!-- Importation du XSD des utilisateurs -->
+ 
   <xs:import namespace="http://www.example.com/utilisateurs"
              schemaLocation="utilisateurs.xsd"/>
 
-  <!-- Types simples spécifiques aux comptes -->
   <xs:simpleType name="StatutType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="active"/>
@@ -21,7 +20,7 @@
     </xs:restriction>
   </xs:simpleType>
 
-  <!-- Type complexe Compte -->
+
   <xs:complexType name="CompteType">
     <xs:sequence>
       <xs:element name="nom" type="xs:string"/>
@@ -43,7 +42,7 @@
     <xs:attribute name="id" type="xs:ID" use="required"/>
   </xs:complexType>
 
-  <!-- Élément racine comptes -->
+
   <xs:element name="comptes">
     <xs:complexType>
       <xs:sequence>

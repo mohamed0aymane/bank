@@ -1,93 +1,51 @@
-/* Conteneur global */
 .compte-container {
-  width: 100%;
-  overflow-x: auto;
-  background: #f1faee;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background: #fff;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  animation: fadeIn 1s ease;
 }
 
-/* Titre */
-.compte-container h2 {
-  font-size: 1.8rem;
-  color: #1d3557;
-  margin-bottom: 15px;
-  font-weight: 700;
-}
-
-/* Tableau */
 .compte-table {
   width: 100%;
   border-collapse: collapse;
-  font-family: 'Arial', sans-serif;
 }
 
-.compte-table th,
-.compte-table td {
-  padding: 12px 15px;
-  border: 1px solid #ddd;
+.compte-table th, .compte-table td {
+  padding: 0.8rem;
   text-align: left;
+  border-bottom: 1px solid #eee;
 }
 
-.compte-table th {
-  background-color: #457b9d;
-  color: #fff;
-  font-weight: 600;
+.compte-table tr:hover {
+  background: rgba(118,75,162,0.05);
+  transform: scale(1.01);
+  transition: all 0.2s ease;
 }
 
-.compte-table tbody tr:nth-child(even) {
-  background-color: #f8f9fa;
-}
-
-.compte-table tbody tr:hover {
-  background-color: #e0e0e0;
-  transition: 0.2s;
-  cursor: pointer;
-}
-
-/* Boutons Actions */
-.btn-edit,
-.btn-delete {
-  padding: 6px 12px;
-  margin-right: 5px;
+.btn-edit, .btn-delete {
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
   border: none;
-  border-radius: 6px;
-  font-weight: 600;
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: 0.3s;
-  text-decoration: none;
-  color: #fff;
+  font-weight: bold;
+  transition: all 0.3s ease;
 }
 
 .btn-edit {
-  background-color: #f4a261;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
 }
 
 .btn-edit:hover {
-  background-color: #e76f51;
+  transform: translateY(-2px) scale(1.05);
 }
 
 .btn-delete {
-  background-color: #e63946;
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  color: #fff;
 }
 
 .btn-delete:hover {
-  background-color: #d62828;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .compte-table th,
-  .compte-table td {
-    padding: 8px 10px;
-    font-size: 0.85rem;
-  }
-
-  .btn-edit,
-  .btn-delete {
-    padding: 4px 8px;
-    font-size: 0.75rem;
-  }
+  transform: translateY(-2px) scale(1.05);
 }

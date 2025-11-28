@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./CompteList.css";
 
+
 export default function CompteList({ role }) {
   const [comptes, setComptes] = useState([]);
   const token = localStorage.getItem("token");
@@ -97,6 +98,7 @@ export default function CompteList({ role }) {
           ))}
         </tbody>
       </table>
+        
     </div>
   );
 }
